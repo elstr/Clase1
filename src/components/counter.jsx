@@ -11,8 +11,8 @@ class Counter extends Component {
 
   sumarValorAContador(){
     // const valor = this.props.valor
-    const {valor} = this.props // 20
-    const {counter}=this.state // 20
+    const {valor} = this.props 
+    const {counter}=this.state 
     const nuevoValorContador = counter + valor // 40
     this.setState({ counter: nuevoValorContador }) // 40
 
