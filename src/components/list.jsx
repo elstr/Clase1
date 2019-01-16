@@ -1,10 +1,11 @@
 import React from "react";
 import Item from "./item";
+
 const List = props => {
   return (
     <div>
-        {props.todoItems.map((item, index) => {
-            return <Item key={index} item={item} />
+        {props.todos.map((item, index) => {
+            return <Item key={`key-${index}`} item={item} />
         })}
     </div>
   );

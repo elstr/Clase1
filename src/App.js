@@ -1,34 +1,44 @@
 import React, { Component } from "react";
 import List from "./components/list";
 
+// SMART COMPONENTS = COMPONENTES PIOLAS = CONTAINERS
+// ESTOS SI TIENEN LOGICA
+// Llaman a componentes bobos(dumb)
+
 class App extends Component {
   constructor() {
-    super();
+    super(); // siempre dentro del constructor llamo a super()
     this.state = {
-      flag: true,
-      todoItems: [{ id: 0, todo: "Comprar coca", categoria: "turbio" }]
+      newTodo: "",
+      todos: ["Comprar Coca"]
     };
-    // this.addItem = this.addItem.bind(this);
-    this.llegueAlBoton = this.llegueAlBoton.bind(this);
   }
-  // addItem() {}
+  addItem() {
+    // console.log("AGREGAMOS EL ITEM - AHRE");
+    // this.state.todos.push(this.state.newTodo);
+    // Cuando trabajo con objetos -> Creo un objeto nuevo
+    // Cuando trabajo con arrays -> Creo un array nuevo
 
-  llegueAlBoton() {
-    console.log("Llegue al boton");
-    console.log("This -", this);
-    this.setState({ flag: false });
+    // Concat: agarro el array que quiero modificar
+    // y entre () le paso el elemento que quiero agregar a ese array
+    // const newTodos = this.state.todos.concat(this.state.newTodo);
+
+    // ... = Spread
+    const { newTodo, todos } = this.state;
+    const newTodos = [newTodo, ...todos];
+    this.setState({
+      todos: newTodos
+    });
   }
-
+  handleInputChange(event) {
+    this.setState({ newTodo: event.target.value });
+  }
   render() {
     return (
       <div className="App">
-        <input type="text" />
-
-        <button onClick={this.llegueAlBoton}>PRIMER BOTON</button>
-        <button onClick={() => this.llegueAlBoton2()}>SEGUNDO BOTON</button>
-
-        {/* <button onClick={this.addItem.}>Add</button>
-        <List todoItems={this.state.todoItems} /> */}
+        <input type="text" onChange={event => this.handleInputChange(event)} />
+        <button onClick={() => this.addItem()}>Add</button>
+        <List todos={this.state.todos} />
       </div>
     );
   }
