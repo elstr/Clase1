@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import List from "./components/list";
+import CiclosDeVida from "./components/ciclos-de-vida";
 
 // SMART COMPONENTS = COMPONENTES PIOLAS = CONTAINERS
 // ESTOS SI TIENEN LOGICA
@@ -10,7 +11,8 @@ class App extends Component {
     super(); // siempre dentro del constructor llamo a super()
     this.state = {
       newTodo: "",
-      todos: ["Comprar Coca"]
+      todos: ["Comprar Coca"],
+      valorProp: "valor inicial"
     };
   }
   addItem() {
@@ -33,12 +35,22 @@ class App extends Component {
   handleInputChange(event) {
     this.setState({ newTodo: event.target.value });
   }
+  handleClick() {
+    this.setState({
+      valorProp: "NUEVO VALOR"
+    });
+  }
   render() {
     return (
       <div className="App">
-        <input type="text" onChange={event => this.handleInputChange(event)} />
+        <CiclosDeVida valorDeLaProp={this.state.valorProp} />
+        <button onClick={() => this.handleClick()}>
+          APRETAR ESTE BOTON PARA DISPARAR EL RESTO DEL CICLO DE VIDA DEL
+          COMPONENTE
+        </button>
+        {/* <input type="text" onChange={event => this.handleInputChange(event)} />
         <button onClick={() => this.addItem()}>Add</button>
-        <List todos={this.state.todos} />
+        <List todos={this.state.todos} /> */}
       </div>
     );
   }
